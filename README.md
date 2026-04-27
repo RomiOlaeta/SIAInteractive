@@ -20,4 +20,4 @@ Este proyecto contiene pruebas automatizadas End to End desarrolladas con Cypres
 ## 1. Clonar repositorio
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+gh repo clone RomiOlaeta/SIAInteractive

@@ -45,12 +45,4 @@ describe('Dex Manager - Media Library', () => {
         }).should('exist')
 
     })
-    it('TC07 - Seleccionar todos los contenidos desde el menú de selección', () => {
-
-    })
-
-    it('TC08 - Cambiar la visualización a Detailed List', () => {
-
-    })
-
 })

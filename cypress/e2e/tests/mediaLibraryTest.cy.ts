@@ -45,4 +45,16 @@ describe('Dex Manager - Media Library', () => {
         }).should('exist')
 
     })
+
+    it('TC07 - Clickear en la opcion todos', () => {
+        mediaLibraryPage.goToMediaLibrary()
+        mediaLibraryPage.clickCheckBox()
+
+    })
+
+    it('TC08 - Clickear en la opcion ninguno', () => {
+        mediaLibraryPage.goToMediaLibrary()
+        mediaLibraryPage.clickNoneOption()
+
+    })
 })

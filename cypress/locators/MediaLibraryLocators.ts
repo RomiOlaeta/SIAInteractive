@@ -8,5 +8,8 @@ export const MediaLibraryLocators = {
     confirmFolderButton: 'paper-fab#paperFab',
 
     uploadFileOption: 'div#labelFab',
-    acceptButton: 'paper-button'
+    acceptButton: 'paper-button',
+    selectAllButton: 'paper-icon-button[icon="select-all"]',
+    allOption: 'paper-item.link',
+    noneOption: 'paper-item.link'
 }

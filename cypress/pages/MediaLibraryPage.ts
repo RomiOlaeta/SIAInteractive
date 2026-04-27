@@ -88,4 +88,30 @@ export class MediaLibraryPage {
             .find('iron-icon#icon')
             .click({ force: true })
     }
+
+    // MediaLibraryPage.ts
+
+    clickCheckBox() {
+        cy.get(MediaLibraryLocators.selectAllButton, {
+            includeShadowDom: true,
+            timeout: 15000
+        }).click({ force: true })
+
+        cy.contains(MediaLibraryLocators.allOption, 'Todos', {
+            includeShadowDom: true,
+            timeout: 15000
+        }).click({ force: true })
+    }
+
+    clickNoneOption() {
+        cy.get(MediaLibraryLocators.selectAllButton, {
+            includeShadowDom: true,
+            timeout: 15000
+        }).click({ force: true })
+
+        cy.contains(MediaLibraryLocators.noneOption, 'Ninguno', {
+            includeShadowDom: true,
+            timeout: 15000
+        }).click({ force: true })
+    }
 }

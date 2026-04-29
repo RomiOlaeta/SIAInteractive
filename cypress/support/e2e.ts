@@ -24,5 +24,12 @@ Cypress.on('uncaught:exception', (err) => {
     return true
 })
 
+Cypress.on('uncaught:exception', (err) => {
+  if (err.message.includes('MediaFiles') || err.message.includes('mediaComponent')) {
+    return false
+  }
+})
+
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

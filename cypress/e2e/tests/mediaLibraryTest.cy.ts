@@ -23,28 +23,45 @@ describe('Dex Manager - Media Library', () => {
     })
 
 
-    it('TC06 - Cargar archivo mediante Upload File', () => {
+   it('TC06 - Cargar archivo mediante Upload File', () => {
+     mediaLibraryPage.goToMediaLibrary()
 
-        mediaLibraryPage.goToMediaLibrary()
-        mediaLibraryPage.createFolder('challenge')
+     cy.location('hash', { timeout: 20000 })
+       .should('include', '/media')
 
-        mediaLibraryPage.clickActionButton()
-        mediaLibraryPage.clickUploadFileOption()
+     mediaLibraryPage.createFolder('challenge')
 
-        mediaLibraryPage.uploadFile('cypress/fixtures/test-file.txt')
+     cy.location('hash').should('include', '/media')
 
-        cy.wait(3000)
+     cy.wait(2000)
 
-        cy.get('body', { includeShadowDom: true }).then($body => {
-            cy.log($body.text())
-        })
+     cy.get('#mainFab', { includeShadowDom: true })
+       .should('exist')
+       .click({ force: true })
 
-        cy.contains('test-file.txt', {
-            includeShadowDom: true,
-            timeout: 20000
-        }).should('exist')
+     cy.get('paper-fab[title="Subir Archivo"]', { includeShadowDom: true })
+       .should('exist')
 
-    })
+     // 👇 ACA va el intercept
+     cy.intercept('POST', '**/Media/UploadFile**').as('uploadFile')
+
+     cy.get('input[type="file"]', { includeShadowDom: true })
+       .last()
+       .selectFile('cypress/fixtures/test.jpg', { force: true })
+
+     // 👇 esperar que termine el upload
+     cy.wait('@uploadFile')
+       .its('response.statusCode')
+       .should('eq', 200)
+
+     // 👇 refrescar para ver el archivo
+     cy.reload()
+
+     cy.contains('test.jpg', {
+       includeShadowDom: true,
+       timeout: 20000
+     }).should('be.visible')
+   })
 
     it('TC07 - Clickear en la opcion todos', () => {
         mediaLibraryPage.goToMediaLibrary()

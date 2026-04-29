@@ -89,7 +89,6 @@ export class MediaLibraryPage {
             .click({ force: true })
     }
 
-    // MediaLibraryPage.ts
 
     clickCheckBox() {
         cy.get(MediaLibraryLocators.selectAllButton, {
